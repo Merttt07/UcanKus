@@ -1,0 +1,5 @@
+node_modules
+dist
+*.log
+# Bu bilgisayara özel Claude Code ayarları
+.claude/settings.local.json

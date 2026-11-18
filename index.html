@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#bfe3f2" />
+    <title>UçanKuş</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <canvas id="game"></canvas>
+
+    <div id="hud">
+      <div id="topbar">
+        <div id="debug"></div>
+        <div id="score">0</div>
+        <button id="pause-btn" class="icon-btn" aria-label="Duraklat" hidden>❚❚</button>
+      </div>
+    </div>
+
+    <!-- Başlangıç: dokunmalar kanvasa geçsin diye tıklanamaz (pointer-events: none) -->
+    <div id="menu-ready" class="overlay passthrough" hidden>
+      <div class="panel">
+        <h1>UçanKuş</h1>
+        <p>Halkalardan geçerek puan topla, dağlara ve yere çarpma!</p>
+        <p id="controls-hint" class="small">Kamera hazırlanıyor…</p>
+        <p id="start-hint" class="cta">Kamera hazırlanıyor…</p>
+      </div>
+    </div>
+
+    <div id="menu-pause" class="overlay" hidden>
+      <div class="panel">
+        <h1>Duraklatıldı</h1>
+        <button id="resume-btn">Devam Et</button>
+        <button id="restart-btn" class="secondary">Yeniden Başla</button>
+        <p class="small">ESC ile ya da ellerini başının üstünde tutarak da devam edebilirsin</p>
+      </div>
+    </div>
+
+    <!-- Oyun sonu: panelin dışına dokunmak da kanvasa geçer → tekrar başlatır -->
+    <div id="menu-over" class="overlay passthrough" hidden>
+      <div class="panel">
+        <h1>Oyun Bitti</h1>
+        <p id="over-reason"></p>
+        <p class="stats">Halka <b id="final-score">0</b> · En iyi <b id="best-score">0</b></p>
+        <button id="again-btn">Tekrar Oyna</button>
+        <p id="again-hint" class="small">ya da dokun / Space</p>
+      </div>
+    </div>
+
+    <!-- Kamera önizlemesi: ayna gibi çevrilmiş görüntü + kol iskeleti. Dokunmaları engellemez. -->
+    <div id="cam-panel">
+      <div id="cam-view">
+        <video id="cam-video" autoplay muted playsinline></video>
+        <canvas id="cam-overlay" width="640" height="480"></canvas>
+      </div>
+      <div id="cam-status">Kamera hazırlanıyor…</div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

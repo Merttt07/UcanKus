@@ -1,0 +1,4 @@
+# Metin dosyaları depoda LF satır sonuyla saklansın
+* text=auto eol=lf
+# Poz modeli ikili dosya: hiç dokunulmasın
+*.task binary
