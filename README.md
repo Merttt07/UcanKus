@@ -4,6 +4,8 @@ Tarayıcıda çalışan 3B uçuş oyunu. Kuşu kollarınla, kamera karşısında
 
 Three.js ile yazıldı, Vite ile çalıştırılıyor. Vücut algılama için MediaPipe Pose kullanılıyor.
 
+**Hemen oyna:** https://merttt07.github.io/UcanKus/ (bilgisayarda ya da telefonda; kamera izni ister)
+
 ## Nasıl oynanır
 
 Kameradan 1,5–2 m uzakta dur; omuzların ve kolların görüntüde olsun.
