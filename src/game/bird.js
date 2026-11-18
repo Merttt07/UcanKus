@@ -9,12 +9,12 @@ export const FLIGHT = {
   forwardSpeed: 19,    // SABİT ileri hız (m/s), kuş baktığı yöne uçar
   turnRate: 1.6,       // rad/s, klavye/dokunmada en hızlı dönüş (steer = ±1)
   // Tek kol çırpışıyla dönüş (kamera): her çırpış o tarafa bir "eğim" ekler, eğim yavaşça söner.
-  flapTurn: 0.35,      // bir çırpışın eklediği dönüş hızı (rad/s, güç 1'de) → yaklaşık 30° dönüş
-  maxBank: 1.3,        // üst üste çırpışlarla ulaşılabilecek en hızlı dönüş (rad/s)
-  bankDecay: 0.7,      // eğimin kendiliğinden düzelme hızı (1/s): düşük → dönüş daha uzun sürer
+  flapTurn: 1.2,       // bir çırpışın eklediği dönüş hızı (rad/s, güç 1'de) → yaklaşık 50° dönüş, çoğu ilk saniyede
+  maxBank: 2.2,        // üst üste çırpışlarla ulaşılabilecek en hızlı dönüş (rad/s)
+  bankDecay: 1.3,      // eğimin kendiliğinden düzelme hızı (1/s): düşük → dönüş daha uzun sürer
   reverseGain: 0.5,    // ters kolla çırpınca: mevcut dönüş tamamen silinir ve en az bu oranda
                        // öbür yöne dönülür (ne kadar sert dönüyor olursan ol, tek çırpış yetsin)
-  turnSmoothing: 5,    // dönüşe girerken dönüş hızı hedefe ne çabuk ulaşır (1/s): yumuşak giriş
+  turnSmoothing: 8,    // dönüşe girerken dönüş hızı hedefe ne çabuk ulaşır (1/s): çırpınca hemen hissedilsin
   turnRelease: 10,     // dönüşü bırakırken ya da ters yöne geçerken (1/s): anında toparlanır
   maxY: 34,            // tavan (mutlak yükseklik)
   radius: 0.5,         // çarpışma küresi yarıçapı
@@ -116,7 +116,8 @@ export function createBird() {
       const easing = targetRate * this.yawRate < 0 || Math.abs(targetRate) < Math.abs(this.yawRate);
       const rate = easing ? FLIGHT.turnRelease : FLIGHT.turnSmoothing;
       this.yawRate += (targetRate - this.yawRate) * (1 - Math.exp(-rate * dt));
-      this.yawRate = THREE.MathUtils.clamp(this.yawRate, -FLIGHT.turnRate * 1.3, FLIGHT.turnRate * 1.3);
+      const maxRate = Math.max(FLIGHT.turnRate * 1.3, FLIGHT.maxBank);
+      this.yawRate = THREE.MathUtils.clamp(this.yawRate, -maxRate, maxRate);
       this.yaw -= this.yawRate * dt;
       this.forward.set(-Math.sin(this.yaw), 0, -Math.cos(this.yaw));
 

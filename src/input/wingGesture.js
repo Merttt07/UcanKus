@@ -18,7 +18,8 @@ export const GESTURE = {
   minStrength: 0.6,
   maxStrength: 1.3,
   pairWindow: 0.12,    // iki kol bu kadar saniye arayla inerse "birlikte" sayılır
-  singleLift: 0.5,     // tek kol çırpışının yükseltme gücü (iki kola göre)
+  singleLift: 1.0,     // tek kol çırpışının yükseltme gücü (iki kola göre): 1 → çapraz yukarı fırlar
+  singleTurnMin: 0.85, // tek kol dönüşünün alt sınırı: yavaş/zayıf ölçülen çırpış da belirgin döndürsün
   handsUpY: -1.1,      // iki bilek de omuzların bu kadar üstündeyse "eller başın üstünde"
   handsUpHold: 1.0,    // ... ve bu kadar saniye tutulursa dur/devam
   handsDownY: 1.0,     // dur/devamdan sonra kollar bu kadar inene dek çırpış sayılmaz
@@ -182,7 +183,7 @@ export function createWingTracker(cfg = GESTURE) {
     // Öbür kol gelmedi → tek kol çırpışı: o tarafa dön.
     if (pending && t - pending.t >= cfg.pairWindow) {
       flap = pending.s * cfg.singleLift;
-      turn = (pending.side === 'R' ? 1 : -1) * pending.s;
+      turn = (pending.side === 'R' ? 1 : -1) * clamp(pending.s, cfg.singleTurnMin, cfg.maxStrength);
       pending = null;
     }
     return result({ flap, turn, holdProgress, leftY, rightY });

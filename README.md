@@ -13,7 +13,7 @@ Kameradan 1,5–2 m uzakta dur; omuzların ve kolların görüntüde olsun.
 | Hareket | Ne yapar |
 |---|---|
 | İki kolu birlikte aşağı çırp | Kuş yükselir |
-| Tek kolu aşağı çırp | Kuş o tarafa döner. Ters kolla çırpmak mevcut dönüşü hemen tersine çevirir. |
+| Tek kolu aşağı çırp | Kuş çapraz yukarı fırlar: yükselir ve o tarafa döner (bir çırpış ~50°). Ters kolla çırpmak dönüşü hemen tersine çevirir. |
 | İki elini başının üstünde ~1 sn tut | Oyunu durdurur / devam ettirir |
 
 Kolunu sonuna kadar indirmen gerekmez; kısa ve hızlı bir aşağı hareket yeterli. Kamera açılamazsa oyun dokunma ve klavyeyle de oynanabilir: dokun / Space ile çırp, ekranın sol-sağ kenarı / A-D ile dön, ESC ile dur.
